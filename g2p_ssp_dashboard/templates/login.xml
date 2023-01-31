@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="g2p_ssp_login_page" model="ir.ui.view">
-        <field name="name">G2P SSP Login</field>
-        <field name="type">qweb</field>
-        <field name="mode">primary</field>
-        <field name="inherit_id" ref="g2p_ssp_base" />
-        <field name="arch" type="xml">
-            <xpath expr="//title" position="replace">
-                <title>Login | G2P Self Service Portal</title>
-            </xpath>
-            <xpath expr="//div[@id='body_main_div']" position="inside">
-                <t t-if="len(providers) &gt; 0">
-                    <div class="o_auth_oauth_providers list-group mt-1 mb-1 text-left">
-                        <a
-                            t-foreach="providers"
-                            t-as="p"
-                            class="list-group-item list-group-item-action py-2"
-                            t-att-href="p['auth_link']"
-                        >
-                            <i t-att-class="p['css_class']" />
-                            <t t-esc="p['body']" />
-                        </a>
+    <template id="g2p_ssp_login_page" name="G2P SSP Login">
+        <t t-call="g2p_ssp_dashboard.g2p_ssp_base">
+            <t t-set="body_classname" t-value="'bg-100'" />
+            <div class="container py-5">
+                <div t-attf-class="card border-0 mx-auto bg-100" style="max-width: 300px;">
+                    <div class="card-body">
+                        <t t-if="len(providers) &gt; 0">
+                            <div class="o_auth_oauth_providers list-group mt-1 mb-1 text-left">
+                                <a
+                                    t-foreach="providers"
+                                    t-as="p"
+                                    class="list-group-item list-group-item-action py-2"
+                                    t-att-href="p['auth_link']"
+                                >
+                                    <i t-att-class="p['css_class']" />
+                                    <t t-esc="p['body']" />
+                                </a>
+                            </div>
+                        </t>
                     </div>
-                </t>
-            </xpath>
-        </field>
-    </record>
+                </div>
+            </div>
+        </t>
+    </template>
 </odoo>
