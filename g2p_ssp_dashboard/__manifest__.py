@@ -1,0 +1,27 @@
+{
+    "name": "G2P Self Service Portal: Dashboard",
+    "category": "G2P",
+    "version": "15.0.0.0.1",
+    "sequence": 1,
+    "author": "OpenG2P",
+    "website": "https://github.com/OpenG2P/openg2p-self-service-portal",
+    "license": "Other OSI approved licence",
+    "development_status": "Production/Stable",
+    "depends": ["g2p_auth_id_oidc", "g2p_registry_individual", "g2p_programs"],
+    "data": [
+        "templates/base.xml",
+        "templates/login.xml",
+        "templates/dashboard.xml",
+        "views/auth_oauth_provider.xml",
+        "views/res_config_settings.xml",
+    ],
+    "assets": {
+        "web.assets_backend": [],
+        "web.assets_qweb": [],
+    },
+    "demo": [],
+    "images": [],
+    "application": True,
+    "installable": True,
+    "auto_install": False,
+}

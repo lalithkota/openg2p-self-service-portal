@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ssp_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.g2p.ssp</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="priority" eval="2000" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div
+                    class="app_settings_block"
+                    data-string="G2P SSP Settings"
+                    id="g2p_ssp_config_settings"
+                    string="G2P SSP Settings"
+                    data-key="g2p_ssp_dashboard"
+                >
+                    <h2>G2P SSP Settings</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <!-- <span class="o_form_label">SSP Settings</span>
+                                <div class="text-muted content-group mt16"> -->
+
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

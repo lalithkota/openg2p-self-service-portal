@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="g2p_ssp_dashboard" model="ir.ui.view">
+        <field name="name">G2P SSP Dashboard</field>
+        <field name="type">qweb</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="g2p_ssp_base" />
+        <field name="arch" type="xml">
+            <xpath expr="//title" position="replace">
+                <title>Dashboard | G2P Self Service Portal</title>
+            </xpath>
+            <xpath expr="//div[@id='body_main_div']" position="inside">
+                <span>DASHBOARD PAGE</span>
+            </xpath>
+        </field>
+    </record>
+</odoo>
