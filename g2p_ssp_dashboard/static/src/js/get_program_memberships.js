@@ -1,7 +1,7 @@
 // TODO: Convert the following into a odoo widget if possible.
 (async () => {
-    // Await new Promise(resolve => setTimeout(resolve, 2000));
     if (window.location.pathname.startsWith("/home")) {
+        // Await new Promise((resolve) => setTimeout(resolve, 3000));
         try {
             const res = await $.get("/api/v1/ssp/program/memberships", {limit: 10});
             var progMemTemplate = `<div id="program_applications">

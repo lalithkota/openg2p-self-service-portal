@@ -2,9 +2,152 @@
 <odoo>
     <template id="g2p_ssp_dashboard" name="G2P SSP Dashboard">
         <t t-call="g2p_ssp_base.g2p_ssp_base">
-            <div id="program_applications">
-                <span>DASHBOARD PAGE. Loading...</span>
-            </div>
+            <section
+                class="s_title o_colored_level pb0 pt0"
+                data-vcss="001"
+                data-snippet="s_title"
+                data-name="Title"
+                style="background-image: none;"
+            >
+                <div class="s_allow_columns container">
+                    <h5 style="text-align: center;">
+                        <font style="color: rgb(231, 148, 57);">
+                            <strong>Welcome to the National Social Benefits Portal</strong>
+                        </font>
+                        <strong />
+                        <br />
+                    </h5>
+                </div>
+            </section>
+            <section
+                class="s_three_columns pt32 pb32 o_colored_level o_cc o_cc2"
+                data-vcss="001"
+                data-snippet="s_three_columns"
+                data-name="Columns"
+                style="background-image: none;"
+            >
+                <div>
+                    <div class="row d-flex align-items-stretch">
+                        <div class="s_col_no_bgcolor pt16 pb0 col-lg-6">
+                            <div
+                                class="card h-100 rounded bg-o-color-3"
+                                style="border-radius: 40px !important;"
+                            >
+                                <div class="card-body">
+                                    <h3 class="card-title">
+                                        <span
+                                            class="fa fa-list-alt"
+                                            data-original-title=""
+                                            title=""
+                                            aria-describedby="tooltip392735"
+                                            style="color: rgb(8, 82, 148) !important;"
+                                        />
+                                        <font style="color: rgb(8, 82, 148);">
+                                            <span style="font-size: 24px;">My Programs</span>
+                                        </font>
+                                        <br />
+                                    </h3>
+                                    <p class="card-text">&amp;nbsp;<br />
+                                    </p>
+                                    <section
+                                        class="s_embed_code pb64 pt0 text-center"
+                                        data-snippet="s_embed_code"
+                                        data-name="Embed Code"
+                                    >
+                                        <div class="s_embed_code_embedded container o_not_editable">
+                                            <div id="program_applications">
+                                                <span>Loading...</span>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s_col_no_bgcolor pt16 pb0 col-lg-5">
+                            <div class="card bg-white h-100 rounded" style="border-radius: 40px !important;">
+                                <div class="card-body">
+                                    <h3 class="card-title" style="text-align: center;">
+                                        <font style="color: rgb(8, 82, 148);">
+                                            <span style="font-size: 24px;">&amp;nbsp;</span>
+                                            <span
+                                                class="fa fa-trophy"
+                                                data-original-title=""
+                                                title=""
+                                                aria-describedby="tooltip586113"
+                                            />
+                                            <span
+                                                style="font-size: 24px;"
+                                            >Entitlement vs Total Amount Received</span>
+                                        </font>
+                                        <br />
+                                    </h3>
+                                    <p class="card-text">&amp;nbsp;<br />
+                                    </p>
+                                    <div
+                                        class="s_chart"
+                                        data-type="pie"
+                                        data-legend-position="top"
+                                        data-tooltip-display="true"
+                                        data-stacked="false"
+                                        data-border-width="2"
+                                        data-data="{&quot;labels&quot;:[&quot;Entitlement&quot;,&quot;Total Amount Received&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;One&quot;,&quot;data&quot;:[&quot;12&quot;,&quot;24&quot;],&quot;backgroundColor&quot;:[&quot;#0414F2&quot;,&quot;#35AD5B&quot;],&quot;borderColor&quot;:[&quot;&quot;,&quot;&quot;]}]}"
+                                        data-snippet="s_chart"
+                                        data-name="Chart"
+                                    >
+                                        <h2 class="o_default_snippet_text">
+                                            <br />
+                                        </h2>
+                                        <canvas style="" width="300" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s_col_no_bgcolor pt16 col-lg-7 pb112">
+                            <div class="card h-100 rounded" style="border-radius: 40px !important;">
+                                <div class="card-body">
+                                    <h3 class="card-title">
+                                        <font style="color: rgb(8, 82, 148);">
+                                            <span style="font-size: 24px;">
+                                                <span
+                                                    class="fa fa-angle-right"
+                                                    data-original-title=""
+                                                    title=""
+                                                    aria-describedby="tooltip3940"
+                                                />
+                                                <span
+                                                    class="fa fa-angle-right"
+                                                    data-original-title=""
+                                                    title=""
+                                                    aria-describedby="tooltip3940"
+                                                />
+                                                <span
+                                                    class="fa fa-angle-right"
+                                                    data-original-title=""
+                                                    title=""
+                                                    aria-describedby="tooltip769383"
+                                                />
+                                                <span class="fa fa-angle-right" />
+                                                <a href="/">All Programs</a>
+                                            </span>
+                                        </font>
+                                        <br />
+                                    </h3>
+                                    <p
+                                        class="card-text"
+                                    >Delete the ab ove image or replace it with a picture that illustrates your message. Click on the picture to change its <em
+                                            class="o_default_snippet_text"
+                                        >rounded corner</em> style.</p>
+                                    <p class="card-text">
+                                        <br />
+                                    </p>
+                                    <p class="card-text">&amp;nbsp;<br />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </t>
     </template>
 </odoo>
