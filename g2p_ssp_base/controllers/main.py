@@ -1,14 +1,17 @@
-import logging
-
 from odoo import http
 from odoo.http import request
 
 from odoo.addons.auth_oauth.controllers import main as auth_oauth
 
-_logger = logging.getLogger(__name__)
 
+class SSPBaseContorller(http.Controller):
+    @http.route(["/ssp"], type="http", auth="public")
+    def ssp_root(self, **kwargs):
+        if request.session and request.session.uid:
+            return request.redirect("/home")
+        else:
+            return request.redirect("/login")
 
-class SSPLoginContorller(http.Controller):
     @http.route(["/ssp/login"], type="http", auth="public")
     def ssp_login(self, **kwargs):
         request.params["redirect"] = "/"
@@ -23,7 +26,13 @@ class SSPLoginContorller(http.Controller):
                 ]
             )
         )
-        return request.render("g2p_ssp_dashboard.g2p_ssp_login_page", qcontext=context)
+        return request.render("g2p_ssp_base.g2p_ssp_login_page", qcontext=context)
+
+    @http.route(["/ssp/logo.png"], type="http", auth="public")
+    def ssp_logo(self, **kwargs):
+        config = request.env["ir.config_parameter"].sudo()
+        attachment_id = config.get_param("g2p_ssp_base.ssp_logo_attachment")
+        return request.redirect("/web/content/%s" % attachment_id)
 
 
 class SSPSigninController(auth_oauth.OAuthController):

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template id="g2p_ssp_dashboard" name="G2P SSP Dashboard">
-        <t t-call="g2p_ssp_dashboard.g2p_ssp_base">
-            <span>DASHBOARD PAGE</span>
+        <t t-call="g2p_ssp_base.g2p_ssp_base">
+            <div id="program_applications">
+                <span>DASHBOARD PAGE. Loading...</span>
+            </div>
         </t>
     </template>
 </odoo>

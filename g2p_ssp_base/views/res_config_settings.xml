@@ -12,16 +12,17 @@
                     data-string="G2P SSP Settings"
                     id="g2p_ssp_config_settings"
                     string="G2P SSP Settings"
-                    data-key="g2p_ssp_dashboard"
+                    data-key="g2p_ssp_base"
                 >
                     <h2>G2P SSP Settings</h2>
                     <div class="row mt16 o_settings_container">
                         <div class="col o_setting_box">
                             <div class="o_setting_right_pane">
-                                <!-- <span class="o_form_label">SSP Settings</span>
-                                <div class="text-muted content-group mt16"> -->
-
-                                <!-- </div> -->
+                                <span class="o_form_label">SSP Settings</span>
+                                <div class="text-muted content-group mt16">
+                                    <label for="ssp_logo" string="SSP Logo" />
+                                    <field name="ssp_logo" class="text-center oe_inline" />
+                                </div>
                             </div>
                         </div>
                     </div>
