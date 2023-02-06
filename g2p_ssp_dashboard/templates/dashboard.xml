@@ -2,6 +2,7 @@
 <odoo>
     <template id="g2p_ssp_dashboard" name="G2P SSP Dashboard">
         <t t-call="g2p_ssp_base.g2p_ssp_base">
+            <t t-set="title">Dashboard | Self Service Portal</t>
             <section
                 class="s_title o_colored_level pb0 pt0"
                 data-vcss="001"

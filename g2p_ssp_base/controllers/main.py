@@ -1,7 +1,7 @@
 from odoo import http
 from odoo.http import request
 
-from odoo.addons.auth_oauth.controllers import main as auth_oauth
+from odoo.addons.auth_oidc.controllers.main import OpenIDLogin
 
 
 class SSPBaseContorller(http.Controller):
@@ -21,7 +21,7 @@ class SSPBaseContorller(http.Controller):
             dict(
                 providers=[
                     p
-                    for p in auth_oauth.OAuthLogin().list_providers()
+                    for p in OpenIDLogin().list_providers()
                     if p.get("g2p_ssp_allowed", False)
                 ]
             )
@@ -33,10 +33,3 @@ class SSPBaseContorller(http.Controller):
         config = request.env["ir.config_parameter"].sudo()
         attachment_id = config.get_param("g2p_ssp_base.ssp_logo_attachment")
         return request.redirect("/web/content/%s" % attachment_id)
-
-
-class SSPSigninController(auth_oauth.OAuthController):
-    @http.route("/ssp/signin", type="http", auth="none")
-    @auth_oauth.fragment_to_query_string
-    def signin(self, **kw):
-        return super(SSPSigninController, self).signin(**kw)

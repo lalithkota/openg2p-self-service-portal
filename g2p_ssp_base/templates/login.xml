@@ -3,6 +3,7 @@
     <template id="g2p_ssp_login_page" name="G2P SSP Login">
         <t t-call="g2p_ssp_base.g2p_ssp_base">
             <t t-set="body_classname" t-value="'bg-100'" />
+            <t t-set="title">Login | Self Service Portal</t>
             <div class="container py-5">
                 <div t-attf-class="card border-0 mx-auto bg-100" style="max-width: 300px;">
                     <div class="card-body">

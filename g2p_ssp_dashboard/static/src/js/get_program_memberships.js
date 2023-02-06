@@ -1,6 +1,10 @@
-// TODO: Convert the following into a odoo widget if possible.
-(async () => {
-    if (window.location.pathname.startsWith("/home")) {
+/** @odoo-module **/
+import Widget from "web.Widget";
+
+// TODO: Modify the following into an OWL Component if possible
+// TODO: Modify the following to use the widget directly in dashboard view
+export const ProgramApplicationsWidget = Widget.extend({
+    retrieveProgramApplications: async function () {
         // Await new Promise((resolve) => setTimeout(resolve, 3000));
         try {
             const res = await $.get("/api/v1/ssp/program/memberships", {limit: 10});
@@ -32,10 +36,16 @@
                     </tbody>
                 </table>
             </div>`;
-            $("div#program_applications").replaceWith(progMemTemplate);
+            return progMemTemplate;
         } catch (err) {
             console.error(err);
-            $("div#program_applications").replaceWith("<span>Error Loading programs</span>");
+            return `<span>Error Loading programs</span>`;
         }
-    }
+    },
+});
+
+(async () => {
+    $("#program_applications").replaceWith(
+        await new ProgramApplicationsWidget().retrieveProgramApplications()
+    );
 })();
