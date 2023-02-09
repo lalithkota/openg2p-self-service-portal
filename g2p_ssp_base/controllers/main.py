@@ -5,15 +5,14 @@ from odoo.addons.auth_oidc.controllers.main import OpenIDLogin
 
 
 class SSPBaseContorller(http.Controller):
-    @http.route(["/ssp"], type="http", auth="public")
+    @http.route(["/ssp"], type="http", auth="user")
     def ssp_root(self, **kwargs):
-        if request.session and request.session.uid:
-            return request.redirect("/home")
-        else:
-            return request.redirect("/login")
+        return request.redirect("/home")
 
     @http.route(["/ssp/login"], type="http", auth="public")
     def ssp_login(self, **kwargs):
+        if request.session and request.session.uid:
+            return request.redirect("/home")
         request.params["redirect"] = "/"
         context = {}
 

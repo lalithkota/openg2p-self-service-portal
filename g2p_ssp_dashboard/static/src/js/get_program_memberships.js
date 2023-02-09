@@ -45,7 +45,8 @@ export const ProgramApplicationsWidget = Widget.extend({
 });
 
 (async () => {
-    $("#program_applications").replaceWith(
-        await new ProgramApplicationsWidget().retrieveProgramApplications()
-    );
+    if ($("#program_applications").length) {
+        var res = await new ProgramApplicationsWidget().retrieveProgramApplications();
+        $("#program_applications").replaceWith(res);
+    }
 })();
