@@ -25,10 +25,14 @@ class SelfServiceBaseContorller(http.Controller):
                 ]
             )
         )
-        return request.render("g2p_self_service_base.g2p_self_service_login_page", qcontext=context)
+        return request.render(
+            "g2p_self_service_base.g2p_self_service_login_page", qcontext=context
+        )
 
     @http.route(["/selfservice/logo.png"], type="http", auth="public")
     def self_service_logo(self, **kwargs):
         config = request.env["ir.config_parameter"].sudo()
-        attachment_id = config.get_param("g2p_self_service_base.self_service_logo_attachment")
+        attachment_id = config.get_param(
+            "g2p_self_service_base.self_service_logo_attachment"
+        )
         return request.redirect("/web/content/%s" % attachment_id)
