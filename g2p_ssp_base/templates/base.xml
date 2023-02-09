@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="g2p_ssp_base" name="G2P SSP Base" inherit_id="web.frontend_layout" primary="True">
+    <template id="g2p_self_service_base" name="G2P Self Service Base" inherit_id="web.frontend_layout" primary="True">
         <xpath expr="//footer" position="replace">
             <footer t-if="not no_footer" id="bottom" data-anchor="true" t-attf-class="bg-light o_footer">
                 <div id="footer" />

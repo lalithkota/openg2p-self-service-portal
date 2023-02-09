@@ -5,11 +5,11 @@ from odoo.addons.component.core import Component
 from ..models.program_membership import ProgramMembershipOut
 
 
-class SSPApiService(Component):
+class SelfServiceApiService(Component):
     _inherit = "base.rest.service"
-    _name = "g2p_ssp.rest.service"
+    _name = "g2p_self_service.rest.service"
     _usage = "program"
-    _collection = "base.rest.ssp.services"
+    _collection = "base.rest.self.service.services"
     _description = """
         Self Service Portal API Services
     """

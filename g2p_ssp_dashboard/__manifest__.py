@@ -7,13 +7,13 @@
     "website": "https://github.com/OpenG2P/openg2p-self-service-portal",
     "license": "Other OSI approved licence",
     "development_status": "Production/Stable",
-    "depends": ["g2p_ssp_base"],
+    "depends": ["g2p_self_service_base"],
     "data": [
         "templates/dashboard.xml",
     ],
     "assets": {
         "web.assets_frontend": [
-            "g2p_ssp_dashboard/static/src/js/get_program_memberships.js",
+            "g2p_self_service_dashboard/static/src/js/get_program_memberships.js",
         ],
     },
     "demo": [],

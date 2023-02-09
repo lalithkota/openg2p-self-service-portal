@@ -7,7 +7,7 @@ export const ProgramApplicationsWidget = Widget.extend({
     retrieveProgramApplications: async function () {
         // Await new Promise((resolve) => setTimeout(resolve, 3000));
         try {
-            const res = await $.get("/api/v1/ssp/program/memberships", {limit: 10});
+            const res = await $.get("/api/v1/selfservice/program/memberships", {limit: 10});
             var progMemTemplate = `<div id="program_applications">
                 <table class="table-sm table-hover table-striped">
                     <thead>

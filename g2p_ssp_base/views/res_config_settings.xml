@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="ssp_res_config_settings_view_form" model="ir.ui.view">
-        <field name="name">res.config.settings.view.form.inherit.g2p.ssp</field>
+    <record id="self_service_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.g2p.self.service</field>
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base.res_config_settings_view_form" />
         <field name="priority" eval="2000" />
@@ -9,19 +9,19 @@
             <xpath expr="//div[hasclass('settings')]" position="inside">
                 <div
                     class="app_settings_block"
-                    data-string="G2P SSP Settings"
-                    id="g2p_ssp_config_settings"
-                    string="G2P SSP Settings"
-                    data-key="g2p_ssp_base"
+                    data-string="G2P Self Service Settings"
+                    id="g2p_self_service_config_settings"
+                    string="G2P Self Service Settings"
+                    data-key="g2p_self_service_base"
                 >
-                    <h2>G2P SSP Settings</h2>
+                    <h2>G2P Self Service Settings</h2>
                     <div class="row mt16 o_settings_container">
                         <div class="col o_setting_box">
                             <div class="o_setting_right_pane">
-                                <span class="o_form_label">SSP Settings</span>
+                                <span class="o_form_label">Self Service Settings</span>
                                 <div class="text-muted content-group mt16">
-                                    <label for="ssp_logo" string="SSP Logo" />
-                                    <field name="ssp_logo" class="text-center oe_inline" />
+                                    <label for="self_service_logo" string="Self Service Logo" />
+                                    <field name="self_service_logo" class="text-center oe_inline" />
                                 </div>
                             </div>
                         </div>

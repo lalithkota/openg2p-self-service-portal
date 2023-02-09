@@ -16,7 +16,7 @@
         "base_rest_pydantic",
         "base_rest_auth_user_service",
         "g2p_programs",
-        "g2p_ssp_base",
+        "g2p_self_service_base",
     ],
     "external_dependencies": {"python": ["extendable-pydantic", "pydantic"]},
     "data": [],
