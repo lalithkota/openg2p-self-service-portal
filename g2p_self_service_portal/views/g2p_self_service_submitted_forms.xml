@@ -37,6 +37,15 @@
                                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                 </form> -->
                             </div>
+                            <div id="output-form">
+                                <t t-out="output_form" />
+                            </div>
+                            <script type="text/javascript">
+                                const orig = document.getElementById('output-form');
+                                const parser = new DOMParser();
+                                const child = parser.parseFromString(orig.textContent, "text/html").documentElement.childNodes[1].childNodes[0];
+                                orig.parentNode.replaceChild(child, orig);
+                            </script>
                         </div>
                     </div>
 

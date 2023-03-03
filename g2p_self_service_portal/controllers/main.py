@@ -1,5 +1,6 @@
 import json
 import logging
+import xml.etree.ElementTree as ET
 from datetime import datetime
 from math import ceil
 
@@ -299,6 +300,22 @@ class SelfServiceContorller(http.Controller):
             if len(program_member) < 1:
                 return request.redirect(f"/selfservice/apply/{_id}")
 
+        form_arch_xml = ""
+        try:
+            form_arch_xml = ET.fromstring(
+                program.self_service_portal_form.view_id.arch
+            )[0][0]
+            inputs = form_arch_xml.findall(".//input")
+            addl_info_program = next(
+                (prog["data"] for prog in additional_info if prog["id"] == _id), {}
+            )
+            for element in inputs:
+                element.set("readonly", "1")
+                element.set("value", addl_info_program.get(element.get("name"), ""))
+            form_arch_xml = ET.tostring(form_arch_xml).decode()
+        except Exception as e:
+            _logger.error("Error Rendering the form", e)
+
         return request.render(
             "g2p_self_service_portal.self_service_form_submitted",
             {
@@ -306,5 +323,6 @@ class SelfServiceContorller(http.Controller):
                 "submission_date": program_member.enrollment_date,
                 "application_id": program_member.application_id,
                 "user": current_partner.given_name,
+                "output_form": form_arch_xml if form_arch_xml else None,
             },
         )
