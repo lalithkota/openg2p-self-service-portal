@@ -48,7 +48,9 @@
             # "g2p_self_service_portal/static/src/js/self_service_search_sort_all.js",
             # "g2p_self_service_portal/static/src/js/self_service_welcome_alert.js"
         ],
-        "web.assets_common": [],
+        "website.assets_wysiwyg": [
+            "g2p_self_service_portal/static/src/js/apply_program_form_editor.js",
+        ],
     },
     "demo": [],
     "images": [],
