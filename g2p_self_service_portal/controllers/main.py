@@ -10,9 +10,12 @@ from odoo import _, http
 from odoo.http import request
 from odoo.tools import safe_eval
 
-from odoo.addons.auth_oidc.controllers.main import OpenIDLogin
 from odoo.addons.auth_signup.controllers.main import AuthSignupHome
 from odoo.addons.web.controllers.home import Home
+
+#  TODO: The 'auth_oidc' module was removed; a replacement is needed in the code.
+# from odoo.addons.auth_oidc.controllers.main import OpenIDLogin
+
 
 _logger = logging.getLogger(__name__)
 
@@ -33,12 +36,14 @@ class SelfServiceController(http.Controller):
         context = {}
 
         providers = []
-        try:
-            providers = OpenIDLogin().list_providers(
-                domain=[("g2p_self_service_allowed", "=", True)]
-            )
-        except Exception:
-            providers = OpenIDLogin().list_providers()
+
+        #  TODO: The 'auth_oidc' module was removed; a replacement is needed in the code."
+        # try:
+        #     providers = OpenIDLogin().list_providers(
+        #         domain=[("g2p_self_service_allowed", "=", True)]
+        #     )
+        # except Exception:
+        #     providers = OpenIDLogin().list_providers()
 
         context.update(dict(providers=providers))
 

@@ -13,7 +13,8 @@
     ],
     "data": [
         "data/g2p_service_provider_form_action_data.xml",
-        "views/auth_oauth_provider.xml",
+        # TODO: The 'auth_oidc' module was removed; a replacement is needed in the code.
+        # "views/auth_oauth_provider.xml",
         "views/g2p_service_provider_aboutus.xml",
         "views/g2p_service_provider_base.xml",
         "views/g2p_service_provider_contactus.xml",

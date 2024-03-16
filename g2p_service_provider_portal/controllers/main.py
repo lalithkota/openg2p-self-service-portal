@@ -8,9 +8,12 @@ from werkzeug.exceptions import Forbidden, Unauthorized
 from odoo import _, http
 from odoo.http import request
 
-from odoo.addons.auth_oidc.controllers.main import OpenIDLogin
 from odoo.addons.g2p_self_service_portal.controllers.main import SelfServiceController
 from odoo.addons.web.controllers.home import Home
+
+#  TODO: The 'auth_oidc' module was removed; a replacement is needed in the code."
+# from odoo.addons.auth_oidc.controllers.main import OpenIDLogin
+
 
 _logger = logging.getLogger(__name__)
 
@@ -31,12 +34,14 @@ class ServiceProviderContorller(http.Controller):
         context = {}
 
         providers = []
-        try:
-            providers = OpenIDLogin().list_providers(
-                domain=[("g2p_service_provider_allowed", "=", True)]
-            )
-        except Exception:
-            providers = OpenIDLogin().list_providers()
+
+        #  TODO: The 'auth_oidc' module was removed; a replacement is needed in the code."
+        # try:
+        #     providers = OpenIDLogin().list_providers(
+        #         domain=[("g2p_service_provider_allowed", "=", True)]
+        #     )
+        # except Exception:
+        #     providers = OpenIDLogin().list_providers()
 
         context.update(dict(providers=providers))
         if request.httprequest.method == "POST":
