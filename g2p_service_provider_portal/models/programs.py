@@ -26,4 +26,4 @@ class G2PReimbursementProgram(models.Model):
                     }
                 )
         else:
-            return super(G2PReimbursementProgram, self).update_form_template()
+            return super().update_form_template()

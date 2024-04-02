@@ -1,15 +1,15 @@
 
 <!-- /!\ Non OCA Context : Set here the badge of your runbot / runboat instance. -->
-[![Pre-commit Status](https://github.com/OpenG2P/openg2p-self-service-portal/actions/workflows/pre-commit.yml/badge.svg?branch=17.0)](https://github.com/OpenG2P/openg2p-self-service-portal/actions/workflows/pre-commit.yml?query=branch%3A17.0)
-[![Build Status](https://github.com/OpenG2P/openg2p-self-service-portal/actions/workflows/test.yml/badge.svg?branch=17.0)](https://github.com/OpenG2P/openg2p-self-service-portal/actions/workflows/test.yml?query=branch%3A17.0)
-[![codecov](https://codecov.io/gh/OpenG2P/openg2p-self-service-portal/branch/17.0/graph/badge.svg)](https://codecov.io/gh/OpenG2P/openg2p-self-service-portal)
+[![Pre-commit Status](https://github.com/OpenG2P/openg2p-self-service-portal/actions/workflows/pre-commit.yml/badge.svg?branch=17.0-develop)](https://github.com/OpenG2P/openg2p-self-service-portal/actions/workflows/pre-commit.yml?query=branch%3A17.0-develop)
+[![Build Status](https://github.com/OpenG2P/openg2p-self-service-portal/actions/workflows/test.yml/badge.svg?branch=17.0-develop)](https://github.com/OpenG2P/openg2p-self-service-portal/actions/workflows/test.yml?query=branch%3A17.0-develop)
+[![codecov](https://codecov.io/gh/OpenG2P/openg2p-self-service-portal/branch/17.0-develop/graph/badge.svg)](https://codecov.io/gh/OpenG2P/openg2p-self-service-portal)
 <!-- /!\ Non OCA Context : Set here the badge of your translation instance. -->
 
 <!-- /!\ do not modify above this line -->
 
 # OpenG2P Self Service Portal
 
-Beneficiary facing self service portal. Refer to [OpenG2P Docs](https://docs.openg2p.org/v/1.1).
+Beneficiary facing self service portal. Refer to [OpenG2P Docs](https://docs.openg2p.org).
 
 <!-- /!\ do not modify below this line -->
 
@@ -21,8 +21,8 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[g2p_self_service_portal](g2p_self_service_portal/) | 17.0.1.0.0 |  | G2P Self Service Portal
-[g2p_service_provider_portal](g2p_service_provider_portal/) | 17.0.1.0.0 |  | G2P Service Provider Portal
+[g2p_self_service_portal](g2p_self_service_portal/) | 17.0.1.2.0 |  | G2P Self Service Portal
+[g2p_service_provider_portal](g2p_service_provider_portal/) | 17.0.1.2.0 |  | G2P Service Provider Portal
 
 [//]: # (end addons)
 

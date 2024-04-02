@@ -49,24 +49,18 @@ class ServiceProviderContorller(http.Controller):
 
             if not request.params["login_success"]:
                 context["error"] = "Invalid Credentials"
-                return request.render(
-                    "g2p_service_provider_portal.login_page", qcontext=context
-                )
+                return request.render("g2p_service_provider_portal.login_page", qcontext=context)
 
             return res
 
-        return request.render(
-            "g2p_service_provider_portal.login_page", qcontext=context
-        )
+        return request.render("g2p_service_provider_portal.login_page", qcontext=context)
 
     @http.route(["/serviceprovider/home"], type="http", auth="user", website=True)
     def portal_home(self, **kwargs):
         self.check_roles("SERVICEPROVIDER")
         return request.redirect("/serviceprovider/voucher")
 
-    @http.route(
-        ["/serviceprovider/myprofile"], type="http", auth="public", website=True
-    )
+    @http.route(["/serviceprovider/myprofile"], type="http", auth="public", website=True)
     def portal_profile(self, **kwargs):
         if request.session and request.session.uid:
             current_partner = request.env.user.partner_id
@@ -81,15 +75,11 @@ class ServiceProviderContorller(http.Controller):
     def portal_about_us(self, **kwargs):
         return request.render("g2p_service_provider_portal.aboutus_page")
 
-    @http.route(
-        ["/serviceprovider/contactus"], type="http", auth="public", website=True
-    )
+    @http.route(["/serviceprovider/contactus"], type="http", auth="public", website=True)
     def portal_contact_us(self, **kwargs):
         return request.render("g2p_service_provider_portal.contact_us")
 
-    @http.route(
-        ["/serviceprovider/otherpage"], type="http", auth="public", website=True
-    )
+    @http.route(["/serviceprovider/otherpage"], type="http", auth="public", website=True)
     def portal_other_page(self, **kwargs):
         return request.render("g2p_service_provider_portal.other_page")
 
@@ -124,12 +114,9 @@ class ServiceProviderContorller(http.Controller):
                     "beneficiary_name": entitlement.partner_id.name,
                     "initial_amount": entitlement.initial_amount,
                     "is_submitted": is_submitted,
-                    "status": "New"
-                    if not is_submitted
-                    else entitlement.reimbursement_entitlement_ids.state,
+                    "status": "New" if not is_submitted else entitlement.reimbursement_entitlement_ids.state,
                     "is_form_mapped": True
-                    if reimbursement_program
-                    and reimbursement_program.self_service_portal_form
+                    if reimbursement_program and reimbursement_program.self_service_portal_form
                     else False,
                 }
             )
@@ -155,10 +142,7 @@ class ServiceProviderContorller(http.Controller):
         entitlement = request.env["g2p.entitlement"].sudo().browse(_id)
         beneficiary = entitlement.partner_id
 
-        if (
-            entitlement.service_provider_id.id != current_partner.id
-            or entitlement.state != "approved"
-        ):
+        if entitlement.service_provider_id.id != current_partner.id or entitlement.state != "approved":
             raise Forbidden()
 
         file_size = entitlement.program_id.reimbursement_program_id.file_size_spp
@@ -167,9 +151,7 @@ class ServiceProviderContorller(http.Controller):
         if len(entitlement.reimbursement_entitlement_ids) > 0:
             return request.redirect(f"/serviceprovider/claim/{_id}")
 
-        view = (
-            entitlement.program_id.reimbursement_program_id.self_service_portal_form.view_id
-        )
+        view = entitlement.program_id.reimbursement_program_id.self_service_portal_form.view_id
 
         return request.render(
             view.id,
@@ -200,10 +182,7 @@ class ServiceProviderContorller(http.Controller):
         # TODO: get only issued entitlements
 
         entitlement = request.env["g2p.entitlement"].sudo().browse(_id)
-        if (
-            entitlement.service_provider_id.id != current_partner.id
-            or entitlement.state != "approved"
-        ):
+        if entitlement.service_provider_id.id != current_partner.id or entitlement.state != "approved":
             raise Forbidden()
 
         if request.httprequest.method == "POST":
@@ -216,11 +195,8 @@ class ServiceProviderContorller(http.Controller):
 
             # TODO: Check if reimbursement program mapped to original program
 
-            current_partner_membership = (
-                current_partner.program_membership_ids.filtered(
-                    lambda x: x.program_id.id
-                    == entitlement.program_id.reimbursement_program_id.id
-                )
+            current_partner_membership = current_partner.program_membership_ids.filtered(
+                lambda x: x.program_id.id == entitlement.program_id.reimbursement_program_id.id
             )
             # TODO: Check current partner not part of prog memberships of
             # reimbursement program.
@@ -244,18 +220,14 @@ class ServiceProviderContorller(http.Controller):
                 membership=current_partner_membership,
             )
             if not supporting_document_files:
-                _logger.warning(
-                    "Empty/No File received for field %s", "Statement of Account"
-                )
+                _logger.warning("Empty/No File received for field %s", "Statement of Account")
                 supporting_document_file_ids = None
             else:
                 supporting_document_file_ids = []
 
                 # saving the multiple document id
                 for document_id in supporting_document_files:
-                    supporting_document_file_ids.append(
-                        document_id.get("document_id", None)
-                    )
+                    supporting_document_file_ids.append(document_id.get("document_id", None))
 
             reimbursement_claim = entitlement.submit_reimbursement_claim(
                 current_partner,
@@ -325,9 +297,7 @@ class ServiceProviderContorller(http.Controller):
             if not request.session or not request.env.user:
                 raise Unauthorized(_("User is not logged in"))
             if not request.env.user.partner_id.supplier_rank > 0:
-                raise Forbidden(
-                    _AppendAction("User is not allowed to access the portal")
-                )
+                raise Forbidden(_AppendAction("User is not allowed to access the portal"))
 
     @http.route("/get_voucher_codes", type="http", auth="user", website=True)
     def get_voucher_codes(self):

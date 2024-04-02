@@ -1,10 +1,10 @@
 {
     "name": "G2P Self Service Portal",
     "category": "G2P",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.2.0",
     "sequence": 1,
     "author": "OpenG2P",
-    "website": "https://github.com/OpenG2P/openg2p-self-service-portal",
+    "website": "https://openg2p.org",
     "license": "Other OSI approved licence",
     "development_status": "Alpha",
     "depends": [
