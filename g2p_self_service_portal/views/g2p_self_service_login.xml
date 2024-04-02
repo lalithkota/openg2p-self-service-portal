@@ -56,10 +56,10 @@
                         </div>
 
                         <p class="alert alert-danger" t-if="error" role="alert">
-                            <t t-esc="error" />
+                            <t t-out="error" />
                         </p>
                         <p class="alert alert-success" t-if="message" role="status">
-                            <t t-esc="message" />
+                            <t t-out="message" />
                         </p>
 
                         <div
@@ -99,7 +99,7 @@
                                             t-att-href="p['auth_link']"
                                         >
                                             <!-- <i t-att-class="p['css_class']" /> -->
-                                            <t t-esc="p['body']" t-att-class="p['css_class']" />
+                                            <t t-out="p['body']" t-att-class="p['css_class']" />
                                         </a>
                                     </div>
                                 </t>

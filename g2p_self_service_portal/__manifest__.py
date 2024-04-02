@@ -29,8 +29,6 @@
         "views/g2p_self_service_aboutus.xml",
         "views/g2p_self_service_otherpage.xml",
         "views/g2p_self_service_contactus.xml",
-        # TODO: The 'auth_oidc' module was removed; a replacement is needed in the code
-        # "views/auth_oauth_provider.xml",
         "views/g2p_self_service_form_page_template.xml",
         "views/program_view.xml",
         "views/g2p_self_service_signup.xml",
@@ -41,10 +39,6 @@
         "wizard/g2p_self_service_program_view_wizard.xml",
     ],
     "assets": {
-        "web.assets_backend": [],
-        "web.assets_qweb": [
-            #   "views/g2p_self_service_portal.doughnut_chart.xml",
-        ],
         "web.assets_frontend": [
             "g2p_self_service_portal/static/src/js/self_service_form_action.js",
             # # "g2p_self_service_portal/static/src/js/self_service_pie_chart.js",
@@ -52,7 +46,6 @@
             # "g2p_self_service_portal/static/src/js/self_service_search_sort_all.js",
             # "g2p_self_service_portal/static/src/js/self_service_welcome_alert.js"
         ],
-        "web.assets_common": [],
     },
     "demo": [],
     "images": [],

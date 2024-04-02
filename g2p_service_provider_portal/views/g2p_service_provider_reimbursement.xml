@@ -61,16 +61,16 @@
                                             <td
                                                 style="color:#704880; font: normal normal 600 13px/16px Inter;"
                                             >
-                                                <t t-esc="entitlement['program_name']" />
+                                                <t t-out="entitlement['program_name']" />
                                             </td>
                                             <td>
-                                                <t t-esc="entitlement['entitlement_id']" />
+                                                <t t-out="entitlement['entitlement_id']" />
                                             </td>
                                             <td>
-                                                <t t-esc="entitlement['beneficiary_name']" />
+                                                <t t-out="entitlement['beneficiary_name']" />
                                             </td>
                                             <td>
-                                                <t t-esc="entitlement['initial_amount']" />
+                                                <t t-out="entitlement['initial_amount']" />
                                             </td>
                                             <td>
                                                 <t t-if="entitlement['is_submitted']">

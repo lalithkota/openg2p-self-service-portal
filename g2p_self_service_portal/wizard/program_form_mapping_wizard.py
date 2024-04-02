@@ -15,7 +15,7 @@ class G2PCreateProgramWizard(models.TransientModel):
     multiple_form_submission = fields.Boolean(default=False)
 
     def create_program(self):
-        res = super(G2PCreateProgramWizard, self).create_program()
+        res = super().create_program()
 
         program = self.env["g2p.program"].browse(res["res_id"])
         portal_form = self.self_service_portal_form

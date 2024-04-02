@@ -72,12 +72,12 @@
                                                     >
                                                         <span>NEW</span>
                                                     </button>
-                                                    <t t-esc="program['name']" />
+                                                    <t t-out="program['name']" />
                                                     <!-- </a> -->
                                                 </t>
                                                 <t t-else="">
                                                     <!-- <a href="/program/" class="program-name"> -->
-                                                    <t t-esc="program['name']" />
+                                                    <t t-out="program['name']" />
                                                     <!-- </a> -->
                                                 </t>
                                             </td>
@@ -100,7 +100,7 @@
                                                             <h5
                                                                 class="modal-title"
                                                                 id="exampleModalLongTitle"
-                                                            ><t t-esc="program['name']" /></h5>
+                                                            ><t t-out="program['name']" /></h5>
                                                             <button
                                                                 type="button"
                                                                 class="close"
@@ -115,7 +115,7 @@
                                                             style="height: 300px; overflow-y: auto;"
                                                         >
                                                             <p>
-                                                                <t t-esc="program['description']" />
+                                                                <t t-out="program['description']" />
                                                             </p>
                                                         </div>
                                                     </div>

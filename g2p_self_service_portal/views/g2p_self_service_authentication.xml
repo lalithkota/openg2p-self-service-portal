@@ -59,10 +59,10 @@
                         <input type="hidden" name="birthdate" t-att-value="values['birthdate']" />
 
                         <p class="alert alert-danger" t-if="error" role="alert">
-                            <t t-esc="error" />
+                            <t t-out="error" />
                         </p>
                         <p class="alert alert-success" t-if="message" role="status">
-                            <t t-esc="message" />
+                            <t t-out="message" />
                         </p>
 
                         <div id="otp-timer">

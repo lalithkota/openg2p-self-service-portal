@@ -92,19 +92,19 @@
                                                     >
                                                             <span>NEW</span>
                                                         </button>
-                                                        <t t-esc="program['name']" />
+                                                        <t t-out="program['name']" />
                                                     <!-- </a> -->
                                                 </t>
 
                                                 <t t-else="">
                                                     <!-- <a href="#" class="program-name"> -->
-                                                        <t t-esc="program['name']" />
+                                                        <t t-out="program['name']" />
                                                     <!-- </a> -->
                                                 </t>
 
                                             </td>
                                             <td>
-                                                <t t-esc="program['application_id']" />
+                                                <t t-out="program['application_id']" />
                                             </td>
 
                                             <td>
@@ -216,15 +216,15 @@
                                                 </t>
                                             </td>
                                             <td>
-                                                <t t-esc="program['enrollment_date']" />
+                                                <t t-out="program['enrollment_date']" />
                                             </td>
                                             <td class="right-align">
                                                 <span>
-                                                    <t t-esc="program['issued']" />
+                                                    <t t-out="program['issued']" />
                                                 </span>
                                             </td>
                                             <td class="right-align">
-                                                <t t-esc="program['paid']" />
+                                                <t t-out="program['paid']" />
                                             </td>
                                         </tr>
 
@@ -233,7 +233,7 @@
 
                                 </t>
                                 <!-- <t>
-                                <tr><td colspan="7"> <div class="no-program-text"> <t t-esc="len(myprograms)"
+                                <tr><td colspan="7"> <div class="no-program-text"> <t t-out="len(myprograms)"
                                 /></div></td></tr></t> -->
                                 <t t-if="not programs">
                                     <tr>
@@ -345,7 +345,7 @@
                             <h5 class="card-heading">Entitlements</h5>
                             <hr />
                             <div id="pie_data" invisible="1" class="invisible">
-                                <t t-esc="data" />
+                                <t t-out="data" />
                             </div>
                             <div id="chartContainer">
 

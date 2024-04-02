@@ -27,7 +27,7 @@
                                         </label>
                                         <div class="beneficiary-value">
                                             <t
-                                                t-esc="current_partner['given_name'] if current_partner['given_name'] else '&#8209;'"
+                                                t-out="current_partner['given_name'] if current_partner['given_name'] else '&#8209;'"
                                             />
                                         </div>
                                     </div>
@@ -43,7 +43,7 @@
                                         </label>
                                         <div class="beneficiary-value">
                                             <t
-                                                t-esc="current_partner['family_name'] if current_partner['family_name'] else '&#8209;'"
+                                                t-out="current_partner['family_name'] if current_partner['family_name'] else '&#8209;'"
                                             />
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@
                                         </label>
                                         <div class="beneficiary-value">
                                             <t
-                                                t-esc="current_partner['email'] if current_partner['email'] else '&#8209;'"
+                                                t-out="current_partner['email'] if current_partner['email'] else '&#8209;'"
                                             />
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                                         </label>
                                         <div class="beneficiary-value">
                                             <t
-                                                t-esc="current_partner['phone'] if current_partner['phone'] else '&#8209;'"
+                                                t-out="current_partner['phone'] if current_partner['phone'] else '&#8209;'"
                                             />
                                         </div>
                                     </div>
@@ -95,7 +95,7 @@
                                         </label>
                                         <div class="beneficiary-value">
                                             <t
-                                                t-esc="current_partner['gender'] if current_partner['gender'] else '&#8209;'"
+                                                t-out="current_partner['gender'] if current_partner['gender'] else '&#8209;'"
                                             />
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@
                                         </label>
                                         <div class="beneficiary-value">
                                             <t
-                                                t-esc="current_partner['birthdate'] if current_partner['birthdate'] else '&#8209;'"
+                                                t-out="current_partner['birthdate'] if current_partner['birthdate'] else '&#8209;'"
                                             />
                                         </div>
                                     </div>

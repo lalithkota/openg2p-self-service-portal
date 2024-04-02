@@ -11,7 +11,7 @@
                     <div class="form-template">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="details"><t t-esc="current_partner_name" /></div>
+                                <div class="details"><t t-out="current_partner_name" /></div>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb form-layout-breadcrumb">
                                         <!-- <li class="breadcrumb-item">
@@ -44,7 +44,7 @@
                                                 Submission Form
                                                 </h5>
                                                 <p class="form-description">
-                                                    Voucher ID - <t t-esc="entitlement_id" />
+                                                    Voucher ID - <t t-out="entitlement_id" />
                                                 </p>
                                             </div>
                                             <div class="col-md-4" style="display:flex; align-items:center;">
@@ -114,7 +114,7 @@
                                                                             </label>
                                                                             <div class="beneficiary-value">
                                                                                 <t
-                                                                                    t-esc="beneficiary['given_name'] if beneficiary['given_name'] else '&#8209;'"
+                                                                                    t-out="beneficiary['given_name'] if beneficiary['given_name'] else '&#8209;'"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -133,7 +133,7 @@
                                                                             </label>
                                                                             <div class="beneficiary-value">
                                                                                 <t
-                                                                                    t-esc="beneficiary['family_name'] if beneficiary['family_name'] else '&#8209;'"
+                                                                                    t-out="beneficiary['family_name'] if beneficiary['family_name'] else '&#8209;'"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -154,7 +154,7 @@
                                                                             </label>
                                                                             <div class="beneficiary-value">
                                                                                 <t
-                                                                                    t-esc="beneficiary['email'] if beneficiary['email'] else '&#8209;'"
+                                                                                    t-out="beneficiary['email'] if beneficiary['email'] else '&#8209;'"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -173,7 +173,7 @@
                                                                             </label>
                                                                             <div class="beneficiary-value">
                                                                                 <t
-                                                                                    t-esc="beneficiary['phone'] if beneficiary['phone'] else '&#8209;'"
+                                                                                    t-out="beneficiary['phone'] if beneficiary['phone'] else '&#8209;'"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -193,7 +193,7 @@
                                                                             </label>
                                                                             <div class="beneficiary-value">
                                                                                 <t
-                                                                                    t-esc="beneficiary['gender'] if beneficiary['gender'] else '&#8209;'"
+                                                                                    t-out="beneficiary['gender'] if beneficiary['gender'] else '&#8209;'"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -211,7 +211,7 @@
                                                                             </label>
                                                                             <div class="beneficiary-value">
                                                                                 <t
-                                                                                    t-esc="beneficiary['birthdate'] if beneficiary['birthdate'] else '&#8209;'"
+                                                                                    t-out="beneficiary['birthdate'] if beneficiary['birthdate'] else '&#8209;'"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -251,7 +251,7 @@
                                 <div class="card container-right" style="width: auto; padding: 0px;">
                                     <div class="card-header" style="padding: 0px;">
                                         <h5 class="action-heading">
-                                            Voucher ID - <t t-esc="entitlement_id" />
+                                            Voucher ID - <t t-out="entitlement_id" />
                                         </h5>
                                         <p class="action-description">
                                             The claim submission will be made against the above voucher ID.

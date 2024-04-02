@@ -25,10 +25,6 @@
         "views/program_view.xml",
     ],
     "assets": {
-        "web.assets_backend": [],
-        "web.assets_qweb": [],
-        "web.assets_frontend": [],
-        "web.assets_common": [],
         "website.assets_editor": [
             "g2p_service_provider_portal/static/src/js/reim_form_editor.js",
         ],

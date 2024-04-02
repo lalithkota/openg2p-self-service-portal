@@ -24,7 +24,7 @@
                             <span class="s_website_form_label_content" style="color: #666666;">Name</span>
                         </label>
                         <div class="beneficiary-value">
-                            <t t-esc="current_partner['name'] if current_partner['name'] else '&#8209;'" />
+                            <t t-out="current_partner['name'] if current_partner['name'] else '&#8209;'" />
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                             >Email Address</span>
                         </label>
                         <div class="beneficiary-value">
-                            <t t-esc="current_partner['email'] if current_partner['email'] else '&#8209;'" />
+                            <t t-out="current_partner['email'] if current_partner['email'] else '&#8209;'" />
                         </div>
                     </div>
                 </div>
@@ -49,16 +49,16 @@
                             <span class="s_website_form_label_content" style="color: #666666;">Address</span>
                         </label>
                         <div class="beneficiary-value">
-                            <t t-esc="current_partner['street'] if current_partner['street'] else None" />,
-                            <t t-esc="current_partner['street2'] if current_partner['street2'] else None" />,
-                            <t t-esc="current_partner['city'] if current_partner['city'] else None" />,
+                            <t t-out="current_partner['street'] if current_partner['street'] else None" />,
+                            <t t-out="current_partner['street2'] if current_partner['street2'] else None" />,
+                            <t t-out="current_partner['city'] if current_partner['city'] else None" />,
                             <t
-                                t-esc="current_partner['state_id'].name if current_partner['state_id'] else None"
+                                t-out="current_partner['state_id'].name if current_partner['state_id'] else None"
                             />,
                             <t
-                                t-esc="current_partner['country_id'].name if current_partner['country_id'] else None"
+                                t-out="current_partner['country_id'].name if current_partner['country_id'] else None"
                             />,
-                            <t t-esc="current_partner['zip'] if current_partner['zip'] else None" />
+                            <t t-out="current_partner['zip'] if current_partner['zip'] else None" />
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                             >Mobile Number</span>
                         </label>
                         <div class="beneficiary-value">
-                            <t t-esc="current_partner['phone'] if current_partner['phone'] else '&#8209;'" />
+                            <t t-out="current_partner['phone'] if current_partner['phone'] else '&#8209;'" />
                         </div>
                     </div>
                 </div>

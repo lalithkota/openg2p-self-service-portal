@@ -30,7 +30,7 @@
                             <div id="toast-message" class="toast-success-message">
                                 Thank you. Your application has been submitted successfully.
                                 Please note your application ID for future reference -
-                                <t t-esc="application_id" />
+                                <t t-out="application_id" />
                             </div>
                             <button id="toast-close-btn" onclick="hideToastSuccessMsg()">
                                 <img src="/g2p_self_service_portal/static/src/img/close_icon@2x.png" />
@@ -41,13 +41,13 @@
                             <div class="col-md-8 submit-message">
                                 <div class="card container-left" style="width: auto; padding: 0px;">
                                     <div class="card-body" style="padding: 20px;">
-                                        <h5 class="user-name">Dear <t t-esc="user" />,</h5>
+                                        <h5 class="user-name">Dear <t t-out="user" />,</h5>
                                         <p class="thank-you-msg">
                                             Thank you for submitting your form for the program <t
-                                                t-esc="program"
+                                                t-out="program"
                                             />.
                                             <br />
-                                            Your application number is <b><t t-esc="application_id" /></b>
+                                            Your application number is <b><t t-out="application_id" /></b>
                                             <br /><br />
                                             We appreciate your interest in  and we are committed to providing you with the support you need to achieve your goals.
                                             Our team will now review your application and assess your eligibility for the scheme. This process may take some time, and we appreciate your patience while we work to provide you with the best possible service.
@@ -68,19 +68,19 @@
                             <div class="col-md-4 status-message">
                                 <div class="card container-right" style="width: auto; padding: 0px;">
                                     <div class="card-header" style="padding: 0px;">
-                                        <h5 class="action-heading"><t t-esc="program" /></h5>
+                                        <h5 class="action-heading"><t t-out="program" /></h5>
                                         <div class="form-status">
-                                            <button><t t-esc="application_status" /></button>
+                                            <button><t t-out="application_status" /></button>
                                         </div>
                                     </div>
                                     <div class="card-body" style="padding: 20px;">
                                         <div class="form-application-id">
                                             <p>Application ID</p>
-                                            <b><t t-esc="application_id" /></b>
+                                            <b><t t-out="application_id" /></b>
                                         </div>
                                         <div>
                                             <p>Submitted On</p>
-                                            <b><t t-esc="submission_date" /></b>
+                                            <b><t t-out="submission_date" /></b>
                                         </div>
                                     </div>
                                     <div class="card-footer" style="padding: 20px;">

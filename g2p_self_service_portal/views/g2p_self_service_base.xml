@@ -142,7 +142,7 @@
                 <xpath expr="//main" position="inside">
                     <div class="ssp-contact-us">
                         <div id="chat-bot" class="contact-us-message">
-                            <h5>Hi <t t-esc="request.env.user.given_name" />, how are you doing?</h5>
+                            <h5>Hi <t t-out="request.env.user.given_name" />, how are you doing?</h5>
                             <p>I am here to assist you. Take a few minutes and lets connect!</p>
                         </div>
                         <div class="chat-assist-icon">

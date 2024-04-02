@@ -39,10 +39,10 @@
                                         <tr>
                                             <td />
                                             <td>
-                                                <t t-esc="value['application_id']" />
+                                                <t t-out="value['application_id']" />
                                             </td>
                                             <td>
-                                                <t t-esc="value['applied_on']" />
+                                                <t t-out="value['applied_on']" />
                                             </td>
                                             <td>
                                                 <t t-if="value['status'] == 'active'">
