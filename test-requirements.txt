@@ -7,6 +7,7 @@ git+https://github.com/OpenG2P/openg2p-registry@15.0-develop#subdirectory=setup/
 git+https://github.com/OpenG2P/openg2p-registry@15.0-develop#subdirectory=setup/g2p_bank
 git+https://github.com/OpenG2P/openg2p-program@15.0-develop#subdirectory=setup/g2p_programs
 git+https://github.com/OpenG2P/openg2p-program@15.0-develop#subdirectory=setup/g2p_program_documents
+git+https://github.com/OpenG2P/openg2p-program@15.0-develop#subdirectory=setup/g2p_program_assessment
 git+https://github.com/OpenG2P/openg2p-program@15.0-develop#subdirectory=setup/g2p_program_reimbursement
 git+https://github.com/OpenG2P/openg2p-program@15.0-develop#subdirectory=setup/g2p_program_registrant_info
 git+https://github.com/OpenG2P/openg2p-notifications@15.0-develop#subdirectory=setup/g2p_notifications_base
