@@ -26,32 +26,32 @@ class SelfServiceController(http.Controller):
 
     @http.route(["/selfservice/login"], type="http", auth="public", website=True)
     def self_service_login(self, **kwargs):
+        redirect_uri = request.params.get("redirect") or "/selfservice/home"
         if request.session and request.session.uid:
-            return request.redirect("/selfservice/home")
-        request.params["redirect"] = "/"
+            return request.redirect(redirect_uri)
+
         context = {}
-
-        providers = []
-
-        #  TODO: The 'auth_oidc' module was removed; a replacement is needed in the code."
-        # try:
-        #     providers = OpenIDLogin().list_providers(
-        #         domain=[("g2p_self_service_allowed", "=", True)]
-        #     )
-        # except Exception:
-        #     providers = OpenIDLogin().list_providers()
-
-        context.update(dict(providers=providers))
 
         if request.httprequest.method == "POST":
             res = Home().web_login(**kwargs)
-
-            if not request.params["login_success"]:
+            if request.params["login_success"]:
+                return res
+            else:
                 context["error"] = "Invalid Credentials"
-                return request.render("g2p_self_service_portal.login_page", qcontext=context)
 
-            return res
+        providers = (
+            request.env["auth.oauth.provider"]
+            .sudo()
+            .get_portal_auth_providers(
+                domain=(("g2p_self_service_allowed", "=", True),),
+                redirect=redirect_uri,
+                base_url=request.httprequest.url_root.rstrip("/"),
+                db_name=request.session.db,
+            )
+            or []
+        )
 
+        context.update(dict(providers=providers))
         return request.render("g2p_self_service_portal.login_page", qcontext=context)
 
     @http.route(["/selfservice/signup"], type="http", auth="public", website=True)
