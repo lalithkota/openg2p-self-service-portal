@@ -13,8 +13,6 @@
     ],
     "data": [
         "data/g2p_service_provider_form_action_data.xml",
-        # TODO: The 'auth_oidc' module was removed; a replacement is needed in the code.
-        # "views/auth_oauth_provider.xml",
         "views/g2p_service_provider_aboutus.xml",
         "views/g2p_service_provider_base.xml",
         "views/g2p_service_provider_contactus.xml",
@@ -27,10 +25,7 @@
         "views/program_view.xml",
     ],
     "assets": {
-        "web.assets_backend": [],
-        "web.assets_frontend": [],
-        "web.assets_common": [],
-        "website.assets_wysiwyg": [
+        "website.assets_editor": [
             "g2p_service_provider_portal/static/src/js/reim_form_editor.js",
         ],
     },

@@ -13,10 +13,6 @@ from odoo.tools import safe_eval
 from odoo.addons.auth_signup.controllers.main import AuthSignupHome
 from odoo.addons.web.controllers.home import Home
 
-#  TODO: The 'auth_oidc' module was removed; a replacement is needed in the code.
-# from odoo.addons.auth_oidc.controllers.main import OpenIDLogin
-
-
 _logger = logging.getLogger(__name__)
 
 

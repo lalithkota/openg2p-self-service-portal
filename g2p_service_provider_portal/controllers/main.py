@@ -11,10 +11,6 @@ from odoo.http import request
 from odoo.addons.g2p_self_service_portal.controllers.main import SelfServiceController
 from odoo.addons.web.controllers.home import Home
 
-#  TODO: The 'auth_oidc' module was removed; a replacement is needed in the code."
-# from odoo.addons.auth_oidc.controllers.main import OpenIDLogin
-
-
 _logger = logging.getLogger(__name__)
 
 
