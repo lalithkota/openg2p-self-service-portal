@@ -630,7 +630,11 @@ class SelfServiceController(http.Controller):
             manager.on_otp_send(**data)
 
     def objects_from_ref_list_string(self, ref_list_string):
-        ref_list = safe_eval.safe_eval(ref_list_string)
+        if ref_list_string:
+            ref_list = safe_eval.safe_eval(ref_list_string)
+        else:
+            # TODO: Add Error message
+            ref_list = []
         result = []
         for ref in ref_list:
             ref_split = ref.split(",")
