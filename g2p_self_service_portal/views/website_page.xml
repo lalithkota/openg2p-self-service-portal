@@ -24,4 +24,18 @@ Part of OpenG2P. See LICENSE file for full copyright and licensing details.
             </xpath>
         </field>
     </record>
+
+    <record id="website_page_properties_view_form_extended" model="ir.ui.view">
+        <field name="name">website.page.properties.form.view.extended</field>
+        <field name="model">website.page</field>
+        <field name="inherit_id" ref="website.website_page_properties_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='page_publish']/group" position="after">
+                <group class="mt-4">
+                    <field name="is_portal_form" string="Is Portal Form" widget="boolean_toggle" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

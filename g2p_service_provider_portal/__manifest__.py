@@ -1,10 +1,10 @@
 {
     "name": "G2P Service Provider Portal",
     "category": "G2P",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.2.0",
     "sequence": 1,
     "author": "OpenG2P",
-    "website": "https://github.com/OpenG2P/openg2p-self-service-portal",
+    "website": "https://openg2p.org",
     "license": "Other OSI approved licence",
     "development_status": "Alpha",
     "depends": [
@@ -13,7 +13,6 @@
     ],
     "data": [
         "data/g2p_service_provider_form_action_data.xml",
-        "views/auth_oauth_provider.xml",
         "views/g2p_service_provider_aboutus.xml",
         "views/g2p_service_provider_base.xml",
         "views/g2p_service_provider_contactus.xml",
@@ -26,10 +25,7 @@
         "views/program_view.xml",
     ],
     "assets": {
-        "web.assets_backend": [],
-        "web.assets_frontend": [],
-        "web.assets_common": [],
-        "website.assets_wysiwyg": [
+        "website.assets_editor": [
             "g2p_service_provider_portal/static/src/js/reim_form_editor.js",
         ],
     },

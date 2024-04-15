@@ -1,10 +1,10 @@
 {
     "name": "G2P Self Service Portal",
     "category": "G2P",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.2.0",
     "sequence": 1,
     "author": "OpenG2P",
-    "website": "https://github.com/OpenG2P/openg2p-self-service-portal",
+    "website": "https://openg2p.org",
     "license": "Other OSI approved licence",
     "development_status": "Alpha",
     "depends": [
@@ -15,7 +15,7 @@
         "g2p_program_documents",
         "website",
         "web",
-        "auth_oidc",
+        "g2p_portal_auth",
     ],
     "data": [
         "data/g2p_self_service_form_action_data.xml",
@@ -29,7 +29,6 @@
         "views/g2p_self_service_aboutus.xml",
         "views/g2p_self_service_otherpage.xml",
         "views/g2p_self_service_contactus.xml",
-        "views/auth_oauth_provider.xml",
         "views/g2p_self_service_form_page_template.xml",
         "views/program_view.xml",
         "views/g2p_self_service_signup.xml",
@@ -40,7 +39,6 @@
         "wizard/g2p_self_service_program_view_wizard.xml",
     ],
     "assets": {
-        "web.assets_backend": [],
         "web.assets_frontend": [
             "g2p_self_service_portal/static/src/js/self_service_form_action.js",
             # # "g2p_self_service_portal/static/src/js/self_service_pie_chart.js",
@@ -48,7 +46,9 @@
             # "g2p_self_service_portal/static/src/js/self_service_search_sort_all.js",
             # "g2p_self_service_portal/static/src/js/self_service_welcome_alert.js"
         ],
-        "web.assets_common": [],
+        "website.assets_wysiwyg": [
+            "g2p_self_service_portal/static/src/js/apply_program_form_editor.js",
+        ],
     },
     "demo": [],
     "images": [],
