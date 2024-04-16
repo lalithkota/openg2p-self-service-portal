@@ -27,7 +27,10 @@ class SelfServiceController(http.Controller):
     @http.route(["/selfservice/login"], type="http", auth="public", website=True)
     def self_service_login(self, **kwargs):
         redirect_uri = request.params.get("redirect") or "/selfservice/home"
+        redirect_uri = request.params.get("redirect") or "/selfservice/home"
         if request.session and request.session.uid:
+            return request.redirect(redirect_uri)
+
             return request.redirect(redirect_uri)
 
         context = {}
@@ -37,7 +40,24 @@ class SelfServiceController(http.Controller):
             if request.params["login_success"]:
                 return res
             else:
+            if request.params["login_success"]:
+                return res
+            else:
                 context["error"] = "Invalid Credentials"
+
+        providers = (
+            request.env["auth.oauth.provider"]
+            .sudo()
+            .get_portal_auth_providers(
+                domain=(("g2p_self_service_allowed", "=", True),),
+                redirect=redirect_uri,
+                base_url=request.httprequest.url_root.rstrip("/"),
+                db_name=request.session.db,
+            )
+            or []
+        )
+
+        context.update(dict(providers=providers))
 
         providers = (
             request.env["auth.oauth.provider"]
@@ -71,6 +91,7 @@ class SelfServiceController(http.Controller):
 
                 # TODO: Enable both email and phone login
                 request.params["login"] = kwargs["email"] if kwargs["email"] else kwargs["phone"]
+                request.params["login"] = kwargs["email"] if kwargs["email"] else kwargs["phone"]
                 AuthSignupHome().web_auth_signup(**kwargs)
 
                 current_partner = request.env.user.partner_id
@@ -89,6 +110,7 @@ class SelfServiceController(http.Controller):
 
                 # Adding VID number
                 config = request.env["ir.config_parameter"].sudo()
+                reg_id_type_id = config.get_param("g2p_self_service_portal.self_service_signup_id_type", None)
                 reg_id_type_id = config.get_param("g2p_self_service_portal.self_service_signup_id_type", None)
                 def_notif_pref = config.get_param(
                     "g2p_notifications_base.default_notification_preference", None
@@ -148,6 +170,7 @@ class SelfServiceController(http.Controller):
         if request.httprequest.method == "POST":
             kw["name"] = (
                 kw["family_name"].title() + ", " + kw["given_name"].title() + " " + kw["addl_name"].title()
+                kw["family_name"].title() + ", " + kw["given_name"].title() + " " + kw["addl_name"].title()
             )
 
             return request.render(
@@ -158,6 +181,7 @@ class SelfServiceController(http.Controller):
     @http.route(["/selfservice/logo"], type="http", auth="public", website=True)
     def self_service_logo(self, **kwargs):
         config = request.env["ir.config_parameter"].sudo()
+        attachment_id = config.get_param("g2p_self_service_portal.self_service_logo_attachment")
         attachment_id = config.get_param("g2p_self_service_portal.self_service_logo_attachment")
         return request.redirect("/web/content/%s" % attachment_id)
 
@@ -229,6 +253,12 @@ class SelfServiceController(http.Controller):
                         if rec.entitlement_id
                         else []
                     )
+                    total_issued = rec.entitlement_id.initial_amount if rec.entitlement_id else 0
+                    total_paid = sum(
+                        (pay.amount_paid for pay in rec.entitlement_id.payment_ids if pay)
+                        if rec.entitlement_id
+                        else []
+                    )
                     myprograms.append(
                         {
                             "id": program.id,
@@ -237,13 +267,20 @@ class SelfServiceController(http.Controller):
                             "single_submission": len(membership.program_registrant_info_ids) == 1,
                             "program_status": program_states.get(membership.state, "Error"),
                             "application_status": application_states.get(rec.state, "Error")
+                            "single_submission": len(membership.program_registrant_info_ids) == 1,
+                            "program_status": program_states.get(membership.state, "Error"),
+                            "application_status": application_states.get(rec.state, "Error")
                             if membership.state not in ("not_eligible", "duplicated")
                             else program_states.get(membership.state, "Error"),
+                            "issued": f"{total_issued:,.2f}",
+                            "paid": f"{total_paid:,.2f}",
                             "issued": f"{total_issued:,.2f}",
                             "paid": f"{total_paid:,.2f}",
                             "enrollment_date": rec.create_date.strftime("%d-%b-%Y")
                             if rec.create_date
                             else None,
+                            "is_latest": (datetime.today() - program.create_date).days < 21,
+                            "application_id": rec.application_id if rec.application_id else None,
                             "is_latest": (datetime.today() - program.create_date).days < 21,
                             "application_id": rec.application_id if rec.application_id else None,
                         }
@@ -252,9 +289,11 @@ class SelfServiceController(http.Controller):
         entitlement = sum(
             ent.initial_amount if ent.state == "approved" else 0
             for ent in request.env["g2p.entitlement"].sudo().search([("partner_id", "=", partner_id.id)])
+            for ent in request.env["g2p.entitlement"].sudo().search([("partner_id", "=", partner_id.id)])
         )
         received = sum(
             pay.amount_paid if pay.status == "paid" else 0
+            for pay in request.env["g2p.payment"].sudo().search([("partner_id", "=", partner_id.id)])
             for pay in request.env["g2p.payment"].sudo().search([("partner_id", "=", partner_id.id)])
         )
 
@@ -274,6 +313,7 @@ class SelfServiceController(http.Controller):
         programs = request.env["g2p.program"].sudo().search([("state", "=", "active")])
 
         if programs.fields_get("is_reimbursement_program"):
+            programs = programs.search([("state", "=", "active"), ("is_reimbursement_program", "=", False)])
             programs = programs.search([("state", "=", "active"), ("is_reimbursement_program", "=", False)])
 
         partner_id = request.env.user.partner_id
@@ -303,11 +343,15 @@ class SelfServiceController(http.Controller):
                     "description": program.description,
                     "has_applied": len(membership) > 0,
                     "single_submission": len(membership.program_registrant_info_ids) == 1,
+                    "single_submission": len(membership.program_registrant_info_ids) == 1,
                     "status": states.get(membership.state, "Error"),
+                    "is_application_rejected": membership.latest_registrant_info_status == "rejected"
                     "is_application_rejected": membership.latest_registrant_info_status == "rejected"
                     if membership.latest_registrant_info_status
                     else False,
                     "is_latest": (datetime.today() - program.create_date).days < 21,
+                    "is_form_mapped": True if program.self_service_portal_form else False,
+                    "is_multiple_form_submission": True if program.multiple_form_submission else False,
                     "is_form_mapped": True if program.self_service_portal_form else False,
                     "is_multiple_form_submission": True if program.multiple_form_submission else False,
                 }
@@ -324,6 +368,7 @@ class SelfServiceController(http.Controller):
             },
         )
 
+    @http.route(["/selfservice/submissions/<int:_id>"], type="http", auth="user", website=True)
     @http.route(["/selfservice/submissions/<int:_id>"], type="http", auth="user", website=True)
     def self_service_all_submissions(self, _id):
         self.self_service_check_roles("REGISTRANT")
@@ -349,6 +394,7 @@ class SelfServiceController(http.Controller):
                     "application_id": detail.application_id,
                     "status": detail.state
                     if detail.program_membership_id.state not in ("duplicated", "not_eligible")
+                    if detail.program_membership_id.state not in ("duplicated", "not_eligible")
                     else detail.program_membership_id.state,
                 }
             )
@@ -369,9 +415,11 @@ class SelfServiceController(http.Controller):
                 "submission_records": submission_records,
                 "re_apply": re_apply,
                 "is_multiple_form_submission": True if program.multiple_form_submission else False,
+                "is_multiple_form_submission": True if program.multiple_form_submission else False,
             },
         )
 
+    @http.route(["/selfservice/apply/<int:_id>"], type="http", auth="user", website=True)
     @http.route(["/selfservice/apply/<int:_id>"], type="http", auth="user", website=True)
     def self_service_apply_programs(self, _id):
         self.self_service_check_roles("REGISTRANT")
@@ -532,14 +580,12 @@ class SelfServiceController(http.Controller):
         return request.render(
             "g2p_self_service_portal.self_service_form_submitted",
             {
-                # TODO: Redirect to different page if application doesn't exist
                 "program": program.name,
-                "submission_date": program_reg_info.create_date.strftime("%d-%b-%Y")
-                if program_reg_info
-                else None,
+                "submission_date": program_reg_info.create_date.strftime("%d-%b-%Y"),
                 "application_status": application_states.get(program_reg_info.state, "Error")
                 if program_reg_info.program_membership_id.state not in ("not_eligible", "duplicated")
                 else program_states.get(program_reg_info.program_membership_id.state, "Error"),
+                # TODO: Redirect to different page if application doesn't exist
                 "application_id": program_reg_info.application_id if program_reg_info else None,
                 "user": current_partner.given_name.capitalize()
                 if current_partner.given_name
@@ -561,6 +607,7 @@ class SelfServiceController(http.Controller):
             if isinstance(value, list):
                 if len(value) > 0 and isinstance(value[0], FileStorage):
                     if not program.supporting_documents_store:
+                        _logger.error("Supporting Documents Store is not set in Program Configuration")
                         _logger.error("Supporting Documents Store is not set in Program Configuration")
                         data[key] = None
                         continue
@@ -625,8 +672,10 @@ class SelfServiceController(http.Controller):
             "g2p_self_service_portal.otp_notification_managers", None
         )
         otp_notification_managers = self.objects_from_ref_list_string(otp_notification_managers)
+        otp_notification_managers = self.objects_from_ref_list_string(otp_notification_managers)
         for manager in otp_notification_managers:
             if not hasattr(manager, "on_otp_send"):
+                _logger.error("Notification Module not Installed. Error for %s", str(manager))
                 _logger.error("Notification Module not Installed. Error for %s", str(manager))
                 continue
             manager.on_otp_send(**data)
