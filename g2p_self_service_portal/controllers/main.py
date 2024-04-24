@@ -50,20 +50,6 @@ class SelfServiceController(http.Controller):
         )
 
         context.update(dict(providers=providers))
-
-        providers = (
-            request.env["auth.oauth.provider"]
-            .sudo()
-            .get_portal_auth_providers(
-                domain=(("g2p_self_service_allowed", "=", True),),
-                redirect=redirect_uri,
-                base_url=request.httprequest.url_root.rstrip("/"),
-                db_name=request.session.db,
-            )
-            or []
-        )
-
-        context.update(dict(providers=providers))
         return request.render("g2p_self_service_portal.login_page", qcontext=context)
 
     @http.route(["/selfservice/signup"], type="http", auth="public", website=True)
@@ -83,7 +69,6 @@ class SelfServiceController(http.Controller):
 
                 # TODO: Enable both email and phone login
                 request.params["login"] = kwargs["email"] if kwargs["email"] else kwargs["phone"]
-                request.params["login"] = kwargs["email"] if kwargs["email"] else kwargs["phone"]
                 AuthSignupHome().web_auth_signup(**kwargs)
 
                 current_partner = request.env.user.partner_id
@@ -102,7 +87,6 @@ class SelfServiceController(http.Controller):
 
                 # Adding VID number
                 config = request.env["ir.config_parameter"].sudo()
-                reg_id_type_id = config.get_param("g2p_self_service_portal.self_service_signup_id_type", None)
                 reg_id_type_id = config.get_param("g2p_self_service_portal.self_service_signup_id_type", None)
                 def_notif_pref = config.get_param(
                     "g2p_notifications_base.default_notification_preference", None
@@ -172,7 +156,6 @@ class SelfServiceController(http.Controller):
     @http.route(["/selfservice/logo"], type="http", auth="public", website=True)
     def self_service_logo(self, **kwargs):
         config = request.env["ir.config_parameter"].sudo()
-        attachment_id = config.get_param("g2p_self_service_portal.self_service_logo_attachment")
         attachment_id = config.get_param("g2p_self_service_portal.self_service_logo_attachment")
         return request.redirect("/web/content/%s" % attachment_id)
 
