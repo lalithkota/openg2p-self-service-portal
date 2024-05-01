@@ -471,8 +471,8 @@ class SelfServiceController(http.Controller):
                 .create(
                     {
                         "state": "active",
-                        "program_registrant_info": self.jsonize_form_data(
-                            form_data, program, membership=program_member
+                        "program_registrant_info": json.dumps(
+                            self.jsonize_form_data(form_data, program, membership=program_member)
                         ),
                         "program_id": program.id,
                         "registrant_id": current_partner.id,
