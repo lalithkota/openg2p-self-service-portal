@@ -29,9 +29,7 @@ class SelfServiceController(http.Controller):
         redirect_uri = request.params.get("redirect") or "/selfservice/home"
         if request.session and request.session.uid:
             return request.redirect(redirect_uri)
-
         context = {}
-
         if request.httprequest.method == "POST":
             res = Home().web_login(**kwargs)
             if request.params["login_success"]:
@@ -533,7 +531,9 @@ class SelfServiceController(http.Controller):
             "g2p_self_service_portal.self_service_form_submitted",
             {
                 "program": program.name,
-                "submission_date": program_reg_info.create_date.strftime("%d-%b-%Y"),
+                "submission_date": program_reg_info.create_date.strftime("%d-%b-%Y")
+                if program_reg_info
+                else None,
                 "application_status": application_states.get(program_reg_info.state, "Error")
                 if program_reg_info.program_membership_id.state not in ("not_eligible", "duplicated")
                 else program_states.get(program_reg_info.program_membership_id.state, "Error"),
@@ -630,7 +630,11 @@ class SelfServiceController(http.Controller):
             manager.on_otp_send(**data)
 
     def objects_from_ref_list_string(self, ref_list_string):
-        ref_list = safe_eval.safe_eval(ref_list_string)
+        if ref_list_string:
+            ref_list = safe_eval.safe_eval(ref_list_string)
+        else:
+            # TODO: Add Error message
+            ref_list = []
         result = []
         for ref in ref_list:
             ref_split = ref.split(",")
