@@ -105,7 +105,7 @@
                                                             id="exampleModalLongTitle"
                                                         >Discard applicaton?</h5>
                                                     </div>
-                                                    <div class="modal-body">
+                                                    <div class="modal-body overflow-hidden">
                                                         <p>
                                                             The entered data will not be saved.
                                                             Are you sure you want to discard the form?
