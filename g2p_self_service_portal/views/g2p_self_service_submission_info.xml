@@ -31,6 +31,7 @@
                                         <th>Application ID</th>
                                         <th>Applied on</th>
                                         <th>Status <i class="fa fa-sort" /></th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -114,6 +115,21 @@
                                                     >
                                                         Closed
                                                     </button>
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <t>
+                                                    <a
+                                                        t-attf-href="/selfservice/submitted/{{value['program_id']}}?application_id={{value['application_id']}}"
+                                                    >
+                                                        <button
+                                                            string="View"
+                                                            type="object"
+                                                            class="view-button"
+                                                        >
+                                                                        View
+                                                        </button>
+                                                    </a>
                                                 </t>
                                             </td>
                                         </tr>

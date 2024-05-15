@@ -345,6 +345,7 @@ class SelfServiceController(http.Controller):
                 {
                     "applied_on": detail.create_date.strftime("%d-%b-%Y"),
                     "application_id": detail.application_id,
+                    "program_id": program.id,
                     "status": detail.state
                     if detail.program_membership_id.state not in ("duplicated", "not_eligible")
                     else detail.program_membership_id.state,
@@ -494,6 +495,7 @@ class SelfServiceController(http.Controller):
     )
     def self_service_form_details(self, _id, **kwargs):
         self.self_service_check_roles("REGISTRANT")
+        application_id = request.params.get("application_id", None)
 
         program = request.env["g2p.program"].sudo().browse(_id)
         current_partner = request.env.user.partner_id
@@ -509,6 +511,8 @@ class SelfServiceController(http.Controller):
             )
             .sorted("create_date", reverse=True)
         )
+        if application_id:
+            program_reg_info = program_reg_info.sudo().search([("application_id", "=", application_id)])
 
         if len(program_reg_info) > 1:
             program_reg_info = program_reg_info[0]
