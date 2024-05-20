@@ -246,7 +246,7 @@ class SelfServiceController(http.Controller):
                             "application_id": rec.application_id if rec.application_id else None,
                         }
                     )
-
+        myprograms.sort(key=lambda x: datetime.strptime(x["enrollment_date"], "%d-%b-%Y"), reverse=True)
         entitlement = sum(
             ent.initial_amount if ent.state == "approved" else 0
             for ent in request.env["g2p.entitlement"].sudo().search([("partner_id", "=", partner_id.id)])
