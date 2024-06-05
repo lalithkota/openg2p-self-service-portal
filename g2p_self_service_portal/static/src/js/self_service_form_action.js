@@ -19,6 +19,12 @@ function hideToastSuccessMsg() {
 }
 
 // eslint-disable-next-line no-unused-vars
+function closeToastSuccessMsg() {
+    const toastContainer = document.getElementById("toast-container");
+    toastContainer.remove();
+}
+
+// eslint-disable-next-line no-unused-vars
 function isValidEmail(email) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
