@@ -32,7 +32,7 @@
                                 Please note your application ID for future reference -
                                 <t t-out="application_id" />
                             </div>
-                            <button id="toast-close-btn" onclick="hideToastSuccessMsg()">
+                            <button id="toast-close-btn" onclick="closeToastSuccessMsg()">
                                 <img src="/g2p_self_service_portal/static/src/img/close_icon@2x.png" />
                             </button>
                         </div>
