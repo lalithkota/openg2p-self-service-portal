@@ -13,12 +13,6 @@ function hideToast() {
 }
 
 // eslint-disable-next-line no-unused-vars
-function hideToastSuccessMsg() {
-    const toast_msg = $(".toast-success-message")[0];
-    toast_msg.style.display = "none";
-}
-
-// eslint-disable-next-line no-unused-vars
 function closeToastSuccessMsg() {
     const toastContainer = document.getElementById("toast-container");
     toastContainer.remove();
