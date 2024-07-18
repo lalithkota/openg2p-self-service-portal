@@ -40,11 +40,9 @@ class ServiceProviderContorller(http.Controller):
         providers = (
             request.env["auth.oauth.provider"]
             .sudo()
-            .get_portal_auth_providers(
+            .list_providers(
                 domain=(("g2p_service_provider_allowed", "=", True),),
                 redirect=redirect_uri,
-                base_url=request.httprequest.url_root.rstrip("/"),
-                db_name=request.session.db,
             )
             or []
         )
